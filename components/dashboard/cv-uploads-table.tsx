@@ -1,0 +1,204 @@
+'use client'
+
+import { useState } from 'react'
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  createColumnHelper,
+  flexRender,
+  type SortingState,
+  type ColumnFiltersState,
+} from '@tanstack/react-table'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { formatDate, getStatusColor } from '@/lib/utils'
+import { Eye, Download } from 'lucide-react'
+import type { CVUpload } from '@/lib/supabase/types'
+import { FeedbackDialog } from './feedback-dialog'
+
+const columnHelper = createColumnHelper<CVUpload>()
+
+interface CVUploadsTableProps {
+  data: CVUpload[]
+  isLoading?: boolean
+}
+
+export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
+  const [sorting, setSorting] = useState<SortingState>([
+    { id: 'created_at', desc: true }
+  ])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [selectedUpload, setSelectedUpload] = useState<CVUpload | null>(null)
+
+  const columns = [
+    columnHelper.accessor('file_name', {
+      header: 'File Name',
+      cell: ({ getValue }) => (
+        <div className="font-medium">{getValue()}</div>
+      ),
+    }),
+    columnHelper.accessor('status', {
+      header: 'Status',
+      cell: ({ getValue }) => {
+        const status = getValue()
+        return (
+          <Badge 
+            variant="outline" 
+            className={getStatusColor(status)}
+          >
+            {status.charAt(0).toUpperCase() + status.slice(1)}
+          </Badge>
+        )
+      },
+    }),
+    columnHelper.accessor('created_at', {
+      header: 'Uploaded',
+      cell: ({ getValue }) => formatDate(getValue()),
+    }),
+    columnHelper.display({
+      id: 'actions',
+      header: 'Actions',
+      cell: ({ row }) => {
+        const upload = row.original
+        const hasCompletedFeedback = upload.status === 'completed' && upload.feedback
+
+        return (
+          <div className="flex space-x-2">
+            {hasCompletedFeedback && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSelectedUpload(upload)}
+              >
+                <Eye className="h-4 w-4 mr-1" />
+                View Feedback
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => downloadCV(upload)}
+            >
+              <Download className="h-4 w-4 mr-1" />
+              Download
+            </Button>
+          </div>
+        )
+      },
+    }),
+  ]
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    state: {
+      sorting,
+      columnFilters,
+    },
+  })
+
+  const downloadCV = async (upload: CVUpload) => {
+    try {
+      // This would need to be implemented with a download API endpoint
+      // For now, we'll show a placeholder
+      console.log('Download CV:', upload.file_name)
+    } catch (error) {
+      console.error('Download error:', error)
+    }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="border rounded-lg">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>File Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Uploaded</TableHead>
+              <TableHead>Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {Array.from({ length: 3 }).map((_, i) => (
+              <TableRow key={i}>
+                <TableCell>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                </TableCell>
+                <TableCell>
+                  <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
+                </TableCell>
+                <TableCell>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                </TableCell>
+                <TableCell>
+                  <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <div className="border rounded-lg">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  No CV uploads found. Upload your first CV to get started!
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      {selectedUpload && (
+        <FeedbackDialog
+          upload={selectedUpload}
+          open={!!selectedUpload}
+          onOpenChange={() => setSelectedUpload(null)}
+        />
+      )}
+    </>
+  )
+}
