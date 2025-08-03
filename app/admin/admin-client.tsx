@@ -29,7 +29,7 @@ type UploadWithProfile = CVUpload & {
   profiles: { 
     email: string
     full_name: string | null 
-  } 
+  } | null
 }
 
 const columnHelper = createColumnHelper<UploadWithProfile>()
@@ -61,13 +61,15 @@ export default function AdminClient() {
   }
 
   const columns = [
-    columnHelper.accessor('profiles.email', {
+    columnHelper.accessor(row => row.profiles?.email, {
+      id: 'email',
       header: 'User Email',
       cell: ({ getValue }) => (
-        <div className="font-medium">{getValue()}</div>
+        <div className="font-medium">{getValue() || 'Anonymous'}</div>
       ),
     }),
-    columnHelper.accessor('profiles.full_name', {
+    columnHelper.accessor(row => row.profiles?.full_name, {
+      id: 'full_name',
       header: 'Full Name',
       cell: ({ getValue }) => (
         <div>{getValue() || 'N/A'}</div>

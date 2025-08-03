@@ -36,7 +36,7 @@ export function useAllCVUploads() {
 
   return useQuery({
     queryKey: ['all-cv-uploads'],
-    queryFn: async (): Promise<(CVUpload & { profiles: { email: string; full_name: string | null } })[]> => {
+    queryFn: async (): Promise<(CVUpload & { profiles: { email: string; full_name: string | null } | null })[]> => {
       const { data, error } = await supabase
         .from('cv_uploads')
         .select(`
@@ -52,7 +52,15 @@ export function useAllCVUploads() {
         throw new Error(`Failed to fetch all uploads: ${error.message}`)
       }
 
-      return data || []
+      // Transform the data to handle missing profiles
+      const transformedData = (data || []).map(item => ({
+        ...item,
+        profiles: item.profiles && typeof item.profiles === 'object' && 'email' in item.profiles 
+          ? item.profiles 
+          : null
+      }))
+
+      return transformedData
     },
     staleTime: 30 * 1000, // 30 seconds
   })

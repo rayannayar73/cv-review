@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import pdf from 'pdf-parse'
-import type { CVFeedback } from '@/lib/supabase/types'
+import type { CVFeedback, Json } from '@/lib/supabase/types'
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!)
 
@@ -139,7 +139,7 @@ export async function POST(request: NextRequest) {
         .from('cv_uploads')
         .update({
           original_text: extractedText,
-          feedback: feedback,
+          feedback: JSON.parse(JSON.stringify(feedback)) as Json,
           status: 'completed',
         })
         .eq('id', uploadId)
@@ -164,7 +164,7 @@ export async function POST(request: NextRequest) {
           status: 'failed',
           feedback: { 
             error: processingError instanceof Error ? processingError.message : 'Unknown error' 
-          }
+          } as unknown as Json
         })
         .eq('id', uploadId)
 

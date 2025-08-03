@@ -24,7 +24,7 @@ export function RatingClient({ upload }: RatingClientProps) {
   const { toast } = useToast()
   const supabase = createClient()
 
-  const feedback = upload.feedback as CVFeedback
+  const feedback = upload.feedback as unknown as CVFeedback
 
   const getScoreColor = (score: number) => {
     if (score >= 8) return 'text-green-600 bg-green-50 border-green-200'

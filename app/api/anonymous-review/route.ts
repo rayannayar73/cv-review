@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import pdf from 'pdf-parse'
-import type { CVFeedback } from '@/lib/supabase/types'
+import type { CVFeedback, Json } from '@/lib/supabase/types'
 import { randomUUID } from 'crypto'
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!)
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
           file_name: file.name,
           file_path: `anonymous/${uploadId}.pdf`, // Don't actually store file for anonymous
           original_text: extractedText,
-          feedback: feedback,
+          feedback: JSON.parse(JSON.stringify(feedback)) as Json,
           status: 'completed',
         })
 
