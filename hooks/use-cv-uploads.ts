@@ -13,9 +13,17 @@ export function useCVUploads() {
   return useQuery({
     queryKey: ['cv-uploads'],
     queryFn: async (): Promise<CVUpload[]> => {
+      // Get current user
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (!user) {
+        throw new Error('User not authenticated')
+      }
+
       const { data, error } = await supabase
         .from('cv_uploads')
         .select('*')
+        .eq('user_id', user.id)  // Filter by current user
         .order('created_at', { ascending: false })
 
       if (error) {
@@ -67,7 +75,7 @@ export function useAllCVUploads() {
 }
 
 /**
- * Hook to get upload statistics
+ * Hook to get upload statistics for current user
  */
 export function useUploadStats() {
   const supabase = createClient()
@@ -75,9 +83,17 @@ export function useUploadStats() {
   return useQuery({
     queryKey: ['upload-stats'],
     queryFn: async () => {
+      // Get current user
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (!user) {
+        throw new Error('User not authenticated')
+      }
+
       const { data, error } = await supabase
         .from('cv_uploads')
         .select('status')
+        .eq('user_id', user.id)  // Filter by current user
 
       if (error) {
         throw new Error(`Failed to fetch stats: ${error.message}`)
