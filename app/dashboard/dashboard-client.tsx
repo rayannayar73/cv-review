@@ -100,10 +100,10 @@ export default function DashboardClient() {
                 <div className="relative flex flex-col md:flex-row items-center gap-8">
                   <div className="flex-1">
                     <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-purple-200">
-                      Votre Expertise Mérite un Portfolio Premium
+                      Crée ton portfolio professionnel avec moi
                     </h3>
                     <p className="text-gray-300 mb-6">
-                      Après avoir optimisé votre CV, passez à l'étape suivante. Je crée des portfolios web qui captent l'attention des recruteurs et mettent en valeur votre parcours professionnel de manière interactive.
+                      Après avoir optimisé ton CV, passe à l'étape suivante. Je crée des portfolios web qui captent l'attention des recruteurs et mettent en valeur ton parcours professionnel de manière interactive.
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <a
