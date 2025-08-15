@@ -111,7 +111,7 @@ export function RatingClient({ upload }: RatingClientProps) {
               <FileText className="h-6 w-6 text-blue-600" />
               <span className="text-xl font-bold text-gray-900">CV Review</span>
             </div>
-            <Button variant="ghost" onClick={() => router.push('/landing')}>
+            <Button variant="ghost" onClick={() => router.push('/')}>
               ← Retour à l’accueil
             </Button>
           </div>
@@ -288,7 +288,7 @@ export function RatingClient({ upload }: RatingClientProps) {
           <p className="text-gray-600 mb-4">Vous avez un autre CV à analyser&nbsp;?</p>
           <Button 
             variant="outline" 
-            onClick={() => router.push('/landing')}
+            onClick={() => router.push('/')}
             className="mr-4"
           >
             Analyser un autre CV

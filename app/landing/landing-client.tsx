@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle, Star, Upload, Users, Zap, FileText, ArrowRight } from 'lucide-react'
 import { CVUploadLanding } from '@/components/landing/cv-upload-landing'

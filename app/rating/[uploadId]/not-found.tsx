@@ -26,7 +26,7 @@ export default function NotFound() {
             <li>• Le lien a expiré</li>
           </ul>
           <div className="pt-4">
-            <Link href="/landing">
+            <Link href="/">
               <Button className="w-full">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Analyser un nouveau CV

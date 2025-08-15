@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
   // Skip middleware for public routes
-  const publicRoutes = ['/landing', '/rating']
+  const publicRoutes = ['/', '/rating']
   const isPublicRoute = publicRoutes.some(route => 
     request.nextUrl.pathname.startsWith(route)
   )

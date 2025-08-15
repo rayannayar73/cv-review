@@ -6,8 +6,8 @@ import { Providers } from './providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'CV Review - AI-Powered Resume Feedback',
-  description: 'Get professional feedback on your CV using AI',
+  title: 'CV Review - Retour sur CV propulsé par l’IA',
+  description: 'Obtenez un retour professionnel sur votre CV en quelques minutes',
 }
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={inter.className}>
         <Providers>
           {children}
