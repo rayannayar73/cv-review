@@ -278,6 +278,51 @@ export function RatingClient({ upload }: RatingClientProps) {
           </CardContent>
         </Card>
 
+        {/* Portfolio Service CTA */}
+        <Card className="mt-12 bg-gradient-to-br from-indigo-50 via-white to-purple-50 border-2 border-indigo-100">
+          <CardContent className="p-8">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-1 space-y-4">
+                <h3 className="text-2xl font-bold text-indigo-900">
+                  Transformez votre CV en Portfolio Interactif
+                </h3>
+                <p className="text-gray-600">
+                  Démarquez-vous avec un portfolio web professionnel qui raconte votre histoire. En tant que développeur fullstack, je crée des sites personnalisés qui mettent en valeur vos compétences uniques.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href="https://ravelojaona-rayan.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                  >
+                    <Star className="h-4 w-4 mr-2" />
+                    Voir un exemple
+                  </a>
+                  <a
+                    href="https://wa.me/261343139059"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors"
+                  >
+                    Discuter de mon projet
+                  </a>
+                </div>
+              </div>
+              <div className="text-center md:text-right space-y-3">
+                <div className="flex flex-col items-center md:items-end space-y-2">
+                  <a href="mailto:ry.ravelojaona@gmail.com" className="text-indigo-600 hover:text-indigo-800">
+                    ry.ravelojaona@gmail.com
+                  </a>
+                  <a href="tel:+261343139059" className="text-gray-600 hover:text-gray-800">
+                    +261 34 31 390 59
+                  </a>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Try Again CTA */}
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">Vous avez un autre CV à analyser&nbsp;?</p>
