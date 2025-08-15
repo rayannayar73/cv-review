@@ -2,9 +2,10 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { CheckCircle, AlertCircle, Lightbulb, Star } from 'lucide-react'
 import type { CVUpload, CVFeedback } from '@/lib/supabase/types'
+import { getScoreColor } from '@/lib/utils'
 
 interface FeedbackDialogProps {
   upload: CVUpload
@@ -18,12 +19,6 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
   }
 
   const feedback = upload.feedback as unknown as CVFeedback
-
-  const getScoreColor = (score: number) => {
-    if (score >= 8) return 'text-green-600 bg-green-50'
-    if (score >= 6) return 'text-yellow-600 bg-yellow-50'
-    return 'text-red-600 bg-red-50'
-  }
 
   const getImpactColor = (impact: string) => {
     switch (impact) {

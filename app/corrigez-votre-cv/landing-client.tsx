@@ -39,11 +39,11 @@ export function LandingClient() {
             ✨ Propulsé par l'IA • Entièrement gratuit
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Obtenez un retour professionnel <br />
-            <span className="text-blue-600">sur votre CV en quelques minutes</span>
+            Corrigez votre CV <br />
+            <span className="text-blue-600">en quelques minutes</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Téléchargez votre CV et recevez un retour détaillé et exploitable grâce à l'IA. Améliorez votre CV avec des suggestions d'experts sur le contenu, la mise en forme et les mots-clés.
+            Téléchargez votre CV et recevez un retour détaillé grâce à l'IA.
           </p>
           
           {/* Upload Section */}
@@ -209,27 +209,16 @@ export function LandingClient() {
           <p className="text-xl text-blue-100 mb-8">
             Rejoignez des milliers de professionnels qui ont amélioré leur CV grâce à notre retour alimenté par l'IA
           </p>
-          <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+          <Button 
+            size="lg" 
+            className="bg-white text-blue-600 hover:bg-gray-100"
+            onClick={() => router.push('/login')}
+          >
             Essayez-le gratuitement maintenant
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <FileText className="h-6 w-6" />
-              <span className="text-lg font-semibold">CV Review</span>
-            </div>
-            <p className="text-gray-400 text-sm">
-              © 2025 CV Review. Tous droits réservés. Propulsé par l'IA.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

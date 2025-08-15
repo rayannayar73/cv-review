@@ -11,6 +11,7 @@ import { Star, ArrowRight, CheckCircle, AlertCircle, Lightbulb, Mail, FileText }
 import { useToast } from '@/hooks/use-toast'
 import { createClient } from '@/lib/supabase/client'
 import type { CVUpload, CVFeedback } from '@/lib/supabase/types'
+import { getScoreColor } from '@/lib/utils'
 
 interface RatingClientProps {
   upload: CVUpload
@@ -25,12 +26,6 @@ export function RatingClient({ upload }: RatingClientProps) {
   const supabase = createClient()
 
   const feedback = upload.feedback as unknown as CVFeedback
-
-  const getScoreColor = (score: number) => {
-    if (score >= 8) return 'text-green-600 bg-green-50 border-green-200'
-    if (score >= 6) return 'text-yellow-600 bg-yellow-50 border-yellow-200'
-    return 'text-red-600 bg-red-50 border-red-200'
-  }
 
   const getScoreMessage = (score: number) => {
     if (score >= 8) return 'Excellent CV ! 🎉'
@@ -286,13 +281,6 @@ export function RatingClient({ upload }: RatingClientProps) {
         {/* Try Again CTA */}
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">Vous avez un autre CV à analyser&nbsp;?</p>
-          <Button 
-            variant="outline" 
-            onClick={() => router.push('/')}
-            className="mr-4"
-          >
-            Analyser un autre CV
-          </Button>
           <Button 
             onClick={() => router.push('/login')}
           >

@@ -144,7 +144,7 @@ export function CVUploadLanding() {
             <div className="flex justify-center space-x-4 text-sm text-gray-500">
               <span>✓ Analyse instantanée</span>
               <span>✓ Retour professionnel</span>
-              <span>✓ Entièrement gratuit</span>
+              <span>✓ Essai gratuit</span>
             </div>
             <input
               ref={fileInputRef}

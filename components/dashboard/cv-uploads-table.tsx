@@ -14,8 +14,8 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { formatDate, getStatusColor } from '@/lib/utils'
-import { Eye, Download } from 'lucide-react'
+import { formatDate, getScoreColor, getStatusColor } from '@/lib/utils'
+import { Eye, Star } from 'lucide-react'
 import type { CVUpload } from '@/lib/supabase/types'
 import { FeedbackDialog } from './feedback-dialog'
 
@@ -32,7 +32,6 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
   ])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [selectedUpload, setSelectedUpload] = useState<CVUpload | null>(null)
-
   const columns = [
     columnHelper.accessor('file_name', {
       header: 'Nom du fichier',
@@ -50,6 +49,21 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
             className={getStatusColor(status)}
           >
             {status.charAt(0).toUpperCase() + status.slice(1)}
+          </Badge>
+        )
+      },
+    }),
+    columnHelper.accessor('feedback.overall_score', {
+      header: 'Note',
+      cell: ({ getValue }) => {
+        const overall_score = getValue()
+        return (
+          <Badge 
+            variant="outline" 
+            className={getScoreColor(overall_score as number)}
+          >
+            <Star className="h-4 w-4 mr-2" />
+            {overall_score as number}/10
           </Badge>
         )
       },
@@ -74,17 +88,9 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
                 onClick={() => setSelectedUpload(upload)}
               >
                 <Eye className="h-4 w-4 mr-1" />
-                Voir le retour
+                Voir
               </Button>
             )}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => downloadCV(upload)}
-            >
-              <Download className="h-4 w-4 mr-1" />
-              Télécharger
-            </Button>
           </div>
         )
       },
@@ -104,16 +110,6 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
       columnFilters,
     },
   })
-
-  const downloadCV = async (upload: CVUpload) => {
-    try {
-      // This would need to be implemented with a download API endpoint
-      // For now, we'll show a placeholder
-      console.log('Download CV:', upload.file_name)
-    } catch (error) {
-      console.error('Download error:', error)
-    }
-  }
 
   if (isLoading) {
     return (

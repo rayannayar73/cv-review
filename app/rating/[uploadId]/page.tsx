@@ -1,7 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { RatingClient } from './rating-client'
-import type { CVUpload } from '@/lib/supabase/types'
 
 interface RatingPageProps {
   params: {

@@ -36,3 +36,9 @@ export function getStatusColor(status: string) {
       return 'text-gray-600 bg-gray-50'
   }
 }
+
+export function getScoreColor(score: number) {
+  if (score >= 7) return 'text-green-600 bg-green-50 border-green-200'
+  if (score >= 5) return 'text-yellow-600 bg-yellow-50 border-yellow-200'
+  return 'text-red-600 bg-red-50 border-red-200'
+}
