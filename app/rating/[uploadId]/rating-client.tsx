@@ -133,16 +133,6 @@ export function RatingClient({ upload }: RatingClientProps) {
           </Badge>
         </div>
 
-        {/* Summary */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Évaluation globale</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-700 text-lg leading-relaxed">{feedback.summary}</p>
-          </CardContent>
-        </Card>
-
         {/* Quick Preview of Feedback */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <Card>
@@ -194,6 +184,16 @@ export function RatingClient({ upload }: RatingClientProps) {
           </Card>
         </div>
 
+        {/* Summary */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Évaluation globale</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 text-lg leading-relaxed">{feedback.summary}</p>
+          </CardContent>
+        </Card>
+        
         {/* Email Capture CTA */}
         <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
           <CardHeader className="text-center">

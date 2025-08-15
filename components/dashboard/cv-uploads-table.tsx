@@ -86,9 +86,10 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
                 variant="outline"
                 size="sm"
                 onClick={() => setSelectedUpload(upload)}
+                className="h-8 px-2 sm:px-3 text-xs sm:text-sm"
               >
-                <Eye className="h-4 w-4 mr-1" />
-                Voir
+                <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4 sm:mr-1" />
+                <span className="hidden sm:inline ml-1">Voir</span>
               </Button>
             )}
           </div>
@@ -113,79 +114,96 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
 
   if (isLoading) {
     return (
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nom du fichier</TableHead>
-              <TableHead>Statut</TableHead>
-              <TableHead>Téléversé le</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {Array.from({ length: 3 }).map((_, i) => (
-              <TableRow key={i}>
-                <TableCell>
-                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
-                </TableCell>
-                <TableCell>
-                  <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
-                </TableCell>
-                <TableCell>
-                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
-                </TableCell>
-                <TableCell>
-                  <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
-                </TableCell>
+      <div className="border rounded-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="whitespace-nowrap">Nom du fichier</TableHead>
+                <TableHead className="whitespace-nowrap">Statut</TableHead>
+                <TableHead className="whitespace-nowrap">Note</TableHead>
+                <TableHead className="whitespace-nowrap">Téléversé le</TableHead>
+                <TableHead className="whitespace-nowrap">Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <TableRow key={i}>
+                  <TableCell className="min-w-[180px]">
+                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  </TableCell>
+                  <TableCell className="min-w-[100px]">
+                    <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
+                  </TableCell>
+                  <TableCell className="min-w-[100px]">
+                    <div className="h-6 w-16 bg-gray-200 rounded animate-pulse"></div>
+                  </TableCell>
+                  <TableCell className="min-w-[120px]">
+                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  </TableCell>
+                  <TableCell className="min-w-[100px]">
+                    <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     )
   }
 
   return (
     <>
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
+      <div className="border rounded-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead key={header.id} className="whitespace-nowrap text-xs sm:text-sm">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
                   ))}
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  Aucun CV téléversé. Téléversez votre premier CV pour commencer !
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell 
+                        key={cell.id} 
+                        className={`whitespace-nowrap text-xs sm:text-sm ${
+                          cell.column.id === 'file_name' ? 'min-w-[180px]' :
+                          cell.column.id === 'status' ? 'min-w-[100px]' :
+                          cell.column.id === 'feedback.overall_score' ? 'min-w-[100px]' :
+                          cell.column.id === 'created_at' ? 'min-w-[120px]' :
+                          cell.column.id === 'actions' ? 'min-w-[100px]' : ''
+                        }`}
+                      >
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={columns.length} className="h-24 text-center text-sm">
+                    Aucun CV téléversé. Téléversez votre premier CV pour commencer !
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
 
       {selectedUpload && (

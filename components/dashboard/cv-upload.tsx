@@ -155,17 +155,17 @@ export default function CVUpload() {
   const { toast } = useToast()
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Téléversez votre CV</CardTitle>
-        <CardDescription>
-          Téléversez votre CV au format PDF pour obtenir un retour propulsé par l’IA
+    <Card className="border-0 shadow-sm">
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-lg sm:text-xl">Téléversez votre CV</CardTitle>
+        <CardDescription className="text-xs sm:text-sm">
+          Téléversez votre CV au format PDF pour obtenir un retour propulsé par l'IA
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         {!selectedFile ? (
           <div
-            className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+            className={`relative border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-colors ${
               dragActive
                 ? 'border-primary bg-primary/5'
                 : 'border-gray-300 hover:border-gray-400'
@@ -175,8 +175,8 @@ export default function CVUpload() {
             onDragOver={handleDrag}
             onDrop={handleDrop}
           >
-            <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-            <p className="text-lg font-medium text-gray-900 mb-2">
+            <Upload className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-3 sm:mb-4" />
+            <p className="text-base sm:text-lg font-medium text-gray-900 mb-2">
               Déposez votre CV ici, ou{' '}
               <button
                 type="button"
@@ -186,7 +186,7 @@ export default function CVUpload() {
                 parcourez
               </button>
             </p>
-            <p className="text-sm text-gray-500">Fichiers PDF uniquement, jusqu’à 10 Mo</p>
+            <p className="text-xs sm:text-sm text-gray-500">Fichiers PDF uniquement, jusqu'à 10 Mo</p>
             <input
               ref={fileInputRef}
               type="file"
@@ -196,12 +196,12 @@ export default function CVUpload() {
             />
           </div>
         ) : (
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3 p-4 border rounded-lg">
-              <FileText className="h-8 w-8 text-blue-500" />
-              <div className="flex-1">
-                <p className="font-medium">{selectedFile.name}</p>
-                <p className="text-sm text-gray-500">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex items-center space-x-3 p-3 sm:p-4 border rounded-lg">
+              <FileText className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-medium text-sm sm:text-base truncate">{selectedFile.name}</p>
+                <p className="text-xs sm:text-sm text-gray-500">
                   {(selectedFile.size / 1024 / 1024).toFixed(2)} Mo
                 </p>
               </div>
@@ -210,19 +210,25 @@ export default function CVUpload() {
                 size="icon"
                 onClick={clearFile}
                 disabled={uploadMutation.isPending}
+                className="flex-shrink-0"
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2">
               <Button
                 onClick={handleUpload}
                 disabled={uploadMutation.isPending}
-                className="flex-1"
+                className="w-full sm:flex-1 text-sm sm:text-base py-2 h-auto"
               >
                 {uploadMutation.isPending ? 'Téléversement…' : 'Téléverser et analyser'}
               </Button>
-              <Button variant="outline" onClick={clearFile} disabled={uploadMutation.isPending}>
+              <Button 
+                variant="outline" 
+                onClick={clearFile} 
+                disabled={uploadMutation.isPending}
+                className="w-full sm:w-auto text-sm sm:text-base py-2 h-auto"
+              >
                 Annuler
               </Button>
             </div>

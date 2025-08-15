@@ -17,14 +17,21 @@ export function LandingClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <FileText className="h-8 w-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900">CV Review</h1>
+              <FileText className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">CV Review</h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" onClick={() => router.push('/login')}>
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Button 
+                variant="ghost" 
+                onClick={() => router.push('/login')}
+                className="text-sm sm:text-base px-2 sm:px-4"
+              >
                 Se connecter
               </Button>
-              <Button onClick={() => router.push('/login')}>
+              <Button 
+                onClick={() => router.push('/login')}
+                className="hidden sm:inline-flex text-sm sm:text-base px-2 sm:px-4"
+              >
                 Commencer
               </Button>
             </div>
@@ -52,22 +59,22 @@ export function LandingClient() {
           </div>
 
           {/* Features Preview */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-6 max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Star className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Évaluation du CV</h3>
               <p className="text-gray-600 text-sm">Obtenez une note globale de 1 à 10 basée sur les standards du secteur</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-6 w-6 text-purple-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Retour détaillé</h3>
               <p className="text-gray-600 text-sm">Suggestions spécifiques pour chaque section de votre CV</p>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Users className="h-6 w-6 text-green-600" />
               </div>
@@ -90,62 +97,62 @@ export function LandingClient() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <Zap className="h-8 w-8 text-yellow-500 mb-2" />
-                <CardTitle>Analyse instantanée</CardTitle>
-                <CardDescription>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6">
+            <Card className="border-0 shadow-md">
+              <CardHeader className="space-y-2">
+                <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-500" />
+                <CardTitle className="text-lg sm:text-xl">Analyse instantanée</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Obtenez un retour en moins de 2 minutes grâce à une technologie IA avancée
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <Star className="h-8 w-8 text-blue-500 mb-2" />
-                <CardTitle>Normes professionnelles</CardTitle>
-                <CardDescription>
+            <Card className="border-0 shadow-md">
+              <CardHeader className="space-y-2">
+                <Star className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500" />
+                <CardTitle className="text-lg sm:text-xl">Normes professionnelles</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Évalué selon les meilleures pratiques du secteur et la compatibilité ATS
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CheckCircle className="h-8 w-8 text-green-500 mb-2" />
-                <CardTitle>Informations exploitables</CardTitle>
-                <CardDescription>
+            <Card className="border-0 shadow-md">
+              <CardHeader className="space-y-2">
+                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-500" />
+                <CardTitle className="text-lg sm:text-xl">Informations exploitables</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Suggestions spécifiques avec niveaux de priorité pour un impact maximal
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <Upload className="h-8 w-8 text-purple-500 mb-2" />
-                <CardTitle>Téléchargement facile</CardTitle>
-                <CardDescription>
+            <Card className="border-0 shadow-md">
+              <CardHeader className="space-y-2">
+                <Upload className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" />
+                <CardTitle className="text-lg sm:text-xl">Téléchargement facile</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Glissez-déposez simplement votre CV PDF - aucun compte requis pour essayer
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <FileText className="h-8 w-8 text-indigo-500 mb-2" />
-                <CardTitle>Analyse des mots-clés</CardTitle>
-                <CardDescription>
+            <Card className="border-0 shadow-md">
+              <CardHeader className="space-y-2">
+                <FileText className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-500" />
+                <CardTitle className="text-lg sm:text-xl">Analyse des mots-clés</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Optimisez pour les systèmes de suivi des candidatures avec des suggestions de mots-clés
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <Users className="h-8 w-8 text-pink-500 mb-2" />
-                <CardTitle>Suivi des progrès</CardTitle>
-                <CardDescription>
+            <Card className="border-0 shadow-md">
+              <CardHeader className="space-y-2">
+                <Users className="h-6 w-6 sm:h-8 sm:w-8 text-pink-500" />
+                <CardTitle className="text-lg sm:text-xl">Suivi des progrès</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Suivez les améliorations sur plusieurs versions de CV au fil du temps
                 </CardDescription>
               </CardHeader>
@@ -166,33 +173,33 @@ export function LandingClient() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 sm:px-6">
+            <div className="text-center bg-white rounded-xl p-6 shadow-sm">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-lg sm:text-xl font-bold">
                 1
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Téléchargez votre CV</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Téléchargez votre CV</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Glissez-déposez votre CV PDF ou cliquez pour parcourir. Aucun compte nécessaire pour essayer.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+            <div className="text-center bg-white rounded-xl p-6 shadow-sm">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-lg sm:text-xl font-bold">
                 2
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Analyse IA</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Analyse IA</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Notre IA analyse votre CV pour le contenu, la structure, les mots-clés et la mise en forme.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+            <div className="text-center bg-white rounded-xl p-6 shadow-sm">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-lg sm:text-xl font-bold">
                 3
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Recevez un retour</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Recevez un retour</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Recevez un retour détaillé avec des suggestions exploitables pour améliorer votre CV.
               </p>
             </div>
@@ -201,21 +208,21 @@ export function LandingClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-12 sm:py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
             Prêt à améliorer votre CV ?
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-6 sm:mb-8">
             Rejoignez des milliers de professionnels qui ont amélioré leur CV grâce à notre retour alimenté par l'IA
           </p>
           <Button 
             size="lg" 
-            className="bg-white text-blue-600 hover:bg-gray-100"
+            className="bg-white text-blue-600 hover:bg-gray-100 text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6"
             onClick={() => router.push('/login')}
           >
             Essayez-le gratuitement maintenant
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
         </div>
       </section>

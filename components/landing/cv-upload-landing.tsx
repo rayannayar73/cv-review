@@ -110,16 +110,16 @@ export function CVUploadLanding() {
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Essayez CV Review gratuitement</CardTitle>
-        <CardDescription>
-          Téléchargez votre CV et obtenez un retour instantané de l’IA – aucun compte requis
+      <CardHeader className="text-center px-4 sm:px-6">
+        <CardTitle className="text-xl sm:text-2xl">Essayez CV Review gratuitement</CardTitle>
+        <CardDescription className="text-sm sm:text-base">
+          Téléchargez votre CV et obtenez un retour instantané de l'IA – aucun compte requis
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         {!selectedFile ? (
           <div
-            className={`relative border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
+            className={`relative border-2 border-dashed rounded-lg p-6 sm:p-12 text-center transition-colors ${
               dragActive
                 ? 'border-blue-500 bg-blue-50'
                 : 'border-gray-300 hover:border-gray-400'
@@ -129,8 +129,8 @@ export function CVUploadLanding() {
             onDragOver={handleDrag}
             onDrop={handleDrop}
           >
-            <Upload className="mx-auto h-16 w-16 text-gray-400 mb-6" />
-            <p className="text-xl font-medium text-gray-900 mb-2">
+            <Upload className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-4 sm:mb-6" />
+            <p className="text-lg sm:text-xl font-medium text-gray-900 mb-2">
               Déposez votre CV ici, ou{' '}
               <button
                 type="button"
@@ -140,8 +140,8 @@ export function CVUploadLanding() {
                 parcourez
               </button>
             </p>
-            <p className="text-gray-500 mb-4">Fichiers PDF uniquement, jusqu’à 10 Mo</p>
-            <div className="flex justify-center space-x-4 text-sm text-gray-500">
+            <p className="text-sm sm:text-base text-gray-500 mb-4">Fichiers PDF uniquement, jusqu'à 10 Mo</p>
+            <div className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-2 sm:space-y-0 text-sm text-gray-500">
               <span>✓ Analyse instantanée</span>
               <span>✓ Retour professionnel</span>
               <span>✓ Essai gratuit</span>
@@ -155,12 +155,14 @@ export function CVUploadLanding() {
             />
           </div>
         ) : (
-          <div className="space-y-6">
-            <div className="flex items-center space-x-4 p-4 border rounded-lg bg-gray-50">
-              <FileText className="h-10 w-10 text-blue-500" />
-              <div className="flex-1">
-                <p className="font-medium text-gray-900">{selectedFile.name}</p>
-                <p className="text-sm text-gray-500">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 border rounded-lg bg-gray-50">
+              <FileText className="h-8 w-8 sm:h-10 sm:w-10 text-blue-500 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-medium text-gray-900 text-sm sm:text-base truncate">
+                  {selectedFile.name}
+                </p>
+                <p className="text-xs sm:text-sm text-gray-500">
                   {(selectedFile.size / 1024 / 1024).toFixed(2)} MB • PDF
                 </p>
               </div>
@@ -169,6 +171,7 @@ export function CVUploadLanding() {
                 size="icon"
                 onClick={clearFile}
                 disabled={isUploading}
+                className="flex-shrink-0"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -178,21 +181,21 @@ export function CVUploadLanding() {
               <Button
                 onClick={handleUpload}
                 disabled={isUploading}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base py-3 sm:py-4"
                 size="lg"
               >
                 {isUploading ? (
                   <>
                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
-                    Analyse de votre CV…
+                    <span className="truncate">Analyse de votre CV…</span>
                   </>
                 ) : (
-                  'Obtenir l’analyse de mon CV'
+                  'Obtenir l\'analyse de mon CV'
                 )}
               </Button>
               
               <div className="text-center">
-                <p className="text-xs text-gray-500">
+                <p className="text-xs sm:text-sm text-gray-500 px-2">
                   En téléversant, vous acceptez notre analyse. Votre CV sera traité en toute sécurité.
                 </p>
               </div>
