@@ -12,11 +12,10 @@ import {
   type ColumnFiltersState,
 } from '@tanstack/react-table'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { formatDate, getScoreColor, getStatusColor } from '@/lib/utils'
+import { formatDate, getScoreColor } from '@/lib/utils'
 import { Eye, Star } from 'lucide-react'
-import type { CVUpload } from '@/lib/supabase/types'
+import type { CVUpload, CVFeedback } from '@/lib/supabase/types'
 import { FeedbackDialog } from './feedback-dialog'
 
 const columnHelper = createColumnHelper<CVUpload>()
@@ -35,62 +34,50 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
   const columns = [
     columnHelper.accessor('file_name', {
       header: 'Nom du fichier',
-      cell: ({ getValue }) => (
-        <div className="font-medium">{getValue()}</div>
-      ),
-    }),
-    columnHelper.accessor('status', {
-      header: 'Statut',
-      cell: ({ getValue }) => {
-        const status = getValue()
+      cell: ({ row }) => {
+        const upload = row.original
+        const feedback = upload.feedback as CVFeedback | null
+        const overall_score = feedback?.overall_score
+        const isFailed = upload.status === 'failed'
+
         return (
-          <Badge 
-            variant="outline" 
-            className={getStatusColor(status)}
+          <div 
+            className="flex items-center gap-3 group"
           >
-            {status.charAt(0).toUpperCase() + status.slice(1)}
-          </Badge>
+            <Badge 
+              variant="outline" 
+              className={`flex-shrink-0 ${isFailed ? 'text-red-500 border-red-200' : getScoreColor(overall_score as number)}`}
+            >
+              {isFailed ? (
+                'Échec'
+              ) : (
+                <>
+                  <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
+                  {overall_score}/10
+                </>
+              )}
+            </Badge>
+            <div className="min-w-0">
+              <div className="font-medium truncate group-hover:text-blue-600 transition-colors">
+                {upload.file_name}
+              </div>
+              <div className="text-[10px] sm:text-xs text-muted-foreground">
+                {formatDate(upload.created_at)}
+              </div>
+            </div>
+          </div>
         )
       },
-    }),
-    columnHelper.accessor('feedback.overall_score', {
-      header: 'Note',
-      cell: ({ getValue }) => {
-        const overall_score = getValue()
-        return (
-          <Badge 
-            variant="outline" 
-            className={getScoreColor(overall_score as number)}
-          >
-            <Star className="h-4 w-4 mr-2" />
-            {overall_score as number}/10
-          </Badge>
-        )
-      },
-    }),
-    columnHelper.accessor('created_at', {
-      header: 'Téléversé le',
-      cell: ({ getValue }) => formatDate(getValue()),
     }),
     columnHelper.display({
       id: 'actions',
-      header: 'Actions',
+      header: '',
       cell: ({ row }) => {
         const upload = row.original
-        const hasCompletedFeedback = upload.status === 'completed' && upload.feedback
-
         return (
-          <div className="flex space-x-2">
-            {hasCompletedFeedback && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSelectedUpload(upload)}
-                className="h-8 px-2 sm:px-3 text-xs sm:text-sm"
-              >
-                <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4 sm:mr-1" />
-                <span className="hidden sm:inline ml-1">Voir</span>
-              </Button>
+          <div className="flex justify-end">
+            {upload.status === 'completed' && upload.feedback && (
+              <Eye className="h-4 w-4 text-gray-400 group-hover/row:text-gray-900 transition-colors" />
             )}
           </div>
         )
@@ -120,29 +107,25 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
             <TableHeader>
               <TableRow>
                 <TableHead className="whitespace-nowrap">Nom du fichier</TableHead>
-                <TableHead className="whitespace-nowrap">Statut</TableHead>
-                <TableHead className="whitespace-nowrap">Note</TableHead>
-                <TableHead className="whitespace-nowrap">Téléversé le</TableHead>
-                <TableHead className="whitespace-nowrap">Actions</TableHead>
+                <TableHead className="whitespace-nowrap text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {Array.from({ length: 3 }).map((_, i) => (
                 <TableRow key={i}>
-                  <TableCell className="min-w-[180px]">
-                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  <TableCell className="min-w-[300px]">
+                    <div className="flex items-center gap-3">
+                      <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
+                      <div className="flex-1 space-y-2">
+                        <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                        <div className="h-3 w-24 bg-gray-200 rounded animate-pulse"></div>
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="min-w-[100px]">
-                    <div className="h-6 w-20 bg-gray-200 rounded animate-pulse"></div>
-                  </TableCell>
-                  <TableCell className="min-w-[100px]">
-                    <div className="h-6 w-16 bg-gray-200 rounded animate-pulse"></div>
-                  </TableCell>
-                  <TableCell className="min-w-[120px]">
-                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
-                  </TableCell>
-                  <TableCell className="min-w-[100px]">
-                    <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="flex justify-end">
+                      <div className="h-4 w-4 bg-gray-200 rounded animate-pulse"></div>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
@@ -177,8 +160,18 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id}>
-                    {row.getVisibleCells().map((cell) => (
+                                     <TableRow 
+                    key={row.id}
+                    className={`group/row hover:bg-gray-50 ${
+                      row.original.status === 'completed' ? 'cursor-pointer' : ''
+                    }`}
+                    onClick={() => {
+                      if (row.original.status === 'completed' && row.original.feedback) {
+                        setSelectedUpload(row.original)
+                      }
+                    }}
+                   >
+                     {row.getVisibleCells().map((cell) => (
                       <TableCell 
                         key={cell.id} 
                         className={`whitespace-nowrap text-xs sm:text-sm ${
