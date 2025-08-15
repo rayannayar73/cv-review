@@ -20,7 +20,7 @@ function useUploadCV() {
     mutationFn: async (file: File) => {
       // Get current user
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) throw new Error('You must be logged in to upload files')
+      if (!user) throw new Error("Vous devez être connecté pour téléverser des fichiers")
 
       // 1. Upload file to Supabase Storage
       const fileExt = file.name.split('.').pop()
@@ -31,7 +31,7 @@ function useUploadCV() {
         .from('cv-uploads')
         .upload(filePath, file)
 
-      if (uploadError) throw new Error('Failed to upload file')
+      if (uploadError) throw new Error('Échec du téléversement du fichier')
 
       // 2. Create CV upload record
       const { data: upload, error: dbError } = await supabase
@@ -46,7 +46,7 @@ function useUploadCV() {
         .select()
         .single()
 
-      if (dbError) throw new Error(`Failed to save upload record: ${dbError.message}`)
+      if (dbError) throw new Error(`Échec de l’enregistrement du téléversement : ${dbError.message}`)
 
       // 3. Trigger processing via API
       const response = await fetch('/api/review', {
@@ -61,21 +61,21 @@ function useUploadCV() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to process CV')
+        throw new Error('Échec du traitement du CV')
       }
 
       return upload
     },
     onSuccess: () => {
       toast({
-        title: 'CV uploaded successfully!',
-        description: 'Your CV is being processed. You will see the feedback shortly.',
+        title: 'CV téléversé avec succès !',
+        description: 'Votre CV est en cours de traitement. Vous verrez le retour sous peu.',
       })
       queryClient.invalidateQueries({ queryKey: ['cv-uploads'] })
     },
     onError: (error: Error) => {
       toast({
-        title: 'Upload failed',
+        title: 'Échec du téléversement',
         description: error.message,
         variant: 'destructive',
       })
@@ -157,9 +157,9 @@ export default function CVUpload() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Upload Your CV</CardTitle>
+        <CardTitle>Téléversez votre CV</CardTitle>
         <CardDescription>
-          Upload your resume in PDF format to get AI-powered feedback
+          Téléversez votre CV au format PDF pour obtenir un retour propulsé par l’IA
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -177,16 +177,16 @@ export default function CVUpload() {
           >
             <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
             <p className="text-lg font-medium text-gray-900 mb-2">
-              Drop your CV here, or{' '}
+              Déposez votre CV ici, ou{' '}
               <button
                 type="button"
                 className="text-primary hover:underline"
                 onClick={() => fileInputRef.current?.click()}
               >
-                browse
+                parcourez
               </button>
             </p>
-            <p className="text-sm text-gray-500">PDF files only, up to 10MB</p>
+            <p className="text-sm text-gray-500">Fichiers PDF uniquement, jusqu’à 10 Mo</p>
             <input
               ref={fileInputRef}
               type="file"
@@ -202,7 +202,7 @@ export default function CVUpload() {
               <div className="flex-1">
                 <p className="font-medium">{selectedFile.name}</p>
                 <p className="text-sm text-gray-500">
-                  {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                  {(selectedFile.size / 1024 / 1024).toFixed(2)} Mo
                 </p>
               </div>
               <Button
@@ -220,10 +220,10 @@ export default function CVUpload() {
                 disabled={uploadMutation.isPending}
                 className="flex-1"
               >
-                {uploadMutation.isPending ? 'Uploading...' : 'Upload & Analyze'}
+                {uploadMutation.isPending ? 'Téléversement…' : 'Téléverser et analyser'}
               </Button>
               <Button variant="outline" onClick={clearFile} disabled={uploadMutation.isPending}>
-                Cancel
+                Annuler
               </Button>
             </div>
           </div>

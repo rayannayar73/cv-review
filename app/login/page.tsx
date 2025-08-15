@@ -35,8 +35,8 @@ export default function LoginPage() {
         if (error) throw error
 
         toast({
-          title: 'Account created!',
-          description: 'Please check your email to confirm your account.',
+          title: 'Compte créé !',
+          description: "Veuillez vérifier votre e-mail pour confirmer votre compte.",
         })
       } else {
         const { error } = await supabase.auth.signInWithPassword({
@@ -50,7 +50,7 @@ export default function LoginPage() {
       }
     } catch (error: any) {
       toast({
-        title: 'Error',
+        title: 'Erreur',
         description: error.message,
         variant: 'destructive',
       })
@@ -64,33 +64,33 @@ export default function LoginPage() {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900">CV Review</h1>
-          <p className="mt-2 text-gray-600">AI-powered resume feedback</p>
+          <p className="mt-2 text-gray-600">Retour sur CV propulsé par l’IA</p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>{isSignUp ? 'Create Account' : 'Sign In'}</CardTitle>
+            <CardTitle>{isSignUp ? 'Créer un compte' : 'Se connecter'}</CardTitle>
             <CardDescription>
               {isSignUp
-                ? 'Enter your details to create a new account'
-                : 'Enter your credentials to access your dashboard'}
+                ? 'Saisissez vos informations pour créer un nouveau compte'
+                : 'Entrez vos identifiants pour accéder à votre tableau de bord'}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">E-mail</Label>
                 <Input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="you@example.com"
+                  placeholder="vous@exemple.com"
                 />
               </div>
               <div>
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Mot de passe</Label>
                 <Input
                   id="password"
                   type="password"
@@ -102,7 +102,7 @@ export default function LoginPage() {
                 />
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Loading...' : isSignUp ? 'Create Account' : 'Sign In'}
+                {isLoading ? 'Chargement…' : isSignUp ? 'Créer un compte' : 'Se connecter'}
               </Button>
             </form>
 
@@ -113,8 +113,8 @@ export default function LoginPage() {
                 className="text-sm text-blue-600 hover:underline"
               >
                 {isSignUp
-                  ? 'Already have an account? Sign in'
-                  : "Don't have an account? Sign up"}
+                  ? 'Vous avez déjà un compte ? Connectez-vous'
+                  : "Vous n'avez pas de compte ? Inscrivez-vous"}
               </button>
             </div>
           </CardContent>

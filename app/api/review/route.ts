@@ -24,44 +24,44 @@ async function extractTextFromPDF(fileBuffer: Buffer): Promise<string> {
  */
 async function generateCVFeedback(cvText: string): Promise<CVFeedback> {
   const prompt = `
-You are an expert career coach and HR professional. Please analyze the following CV and provide comprehensive feedback.
+Tu es un(e) expert(e) en accompagnement de carrière et un(e) professionnel(le) RH. Analyse le CV suivant et fournis un retour complet.
 
-CV Content:
+Contenu du CV :
 ${cvText}
 
-Please provide feedback in the following JSON format (return only valid JSON, no additional text):
+RENVOIE STRICTEMENT un JSON valide (aucun texte avant/après). IMPORTANT : **les clés du JSON doivent rester en anglais**, mais **toutes les valeurs textuelles doivent être en français (France)**.
+Format attendu :
 {
   "overall_score": <number 1-10>,
-  "summary": "<brief overall assessment>",
-  "strengths": ["<strength 1>", "<strength 2>", ...],
-  "areas_for_improvement": ["<area 1>", "<area 2>", ...],
+  "summary": "<évaluation globale brève en français>",
+  "strengths": ["<force 1>", "<force 2>", ...],
+  "areas_for_improvement": ["<axe d'amélioration 1>", "<axe d'amélioration 2>", ...],
   "specific_suggestions": [
     {
-      "section": "<section name>",
-      "suggestion": "<specific suggestion>",
+      "section": "<nom de la section>",
+      "suggestion": "<suggestion précise en français>",
       "impact": "<high|medium|low>"
     }
   ],
-  "formatting_feedback": "<feedback on layout and formatting>",
+  "formatting_feedback": "<retour sur la mise en page et le format>",
   "keyword_analysis": {
-    "missing_keywords": ["<keyword 1>", "<keyword 2>", ...],
+    "missing_keywords": ["<mot-clé manquant 1>", "<mot-clé manquant 2>", ...],
     "suggested_additions": ["<suggestion 1>", "<suggestion 2>", ...]
   }
 }
 
-Focus on:
-1. Professional experience relevance and presentation
-2. Skills alignment with modern job market
-3. Education and certifications
-4. Overall structure and formatting
-5. ATS (Applicant Tracking System) compatibility
-6. Industry-specific keywords and terminology
-7. Quantifiable achievements and metrics
-8. Professional summary effectiveness
+Concentre-toi sur :
+1. Pertinence et présentation de l'expérience professionnelle
+2. Adéquation des compétences avec le marché actuel
+3. Formation et certifications
+4. Structure et mise en forme globales
+5. Compatibilité ATS (Applicant Tracking System)
+6. Mots-clés et terminologie spécifiques au secteur
+7. Réalisations quantifiées et métriques
+8. Efficacité du résumé/profil professionnel
 
-Be constructive, specific, and actionable in your feedback. Provide both positive reinforcement and clear improvement suggestions.
-`
-
+Sois constructif(ve), spécifique et actionnable. Donne à la fois des points positifs et des pistes claires d'amélioration.`
+  
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
     

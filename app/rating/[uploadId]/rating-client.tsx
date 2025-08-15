@@ -33,16 +33,16 @@ export function RatingClient({ upload }: RatingClientProps) {
   }
 
   const getScoreMessage = (score: number) => {
-    if (score >= 8) return 'Excellent CV! 🎉'
-    if (score >= 6) return 'Good CV with room for improvement'
-    return 'Your CV needs significant improvements'
+    if (score >= 8) return 'Excellent CV ! 🎉'
+    if (score >= 6) return 'Bon CV avec des marges d’amélioration'
+    return 'Votre CV nécessite des améliorations importantes'
   }
 
   const handleCreateAccount = async () => {
     if (!email) {
       toast({
-        title: 'Email required',
-        description: 'Please enter your email address',
+        title: 'E‑mail requis',
+        description: 'Veuillez saisir votre adresse e‑mail',
         variant: 'destructive',
       })
       return
@@ -63,8 +63,8 @@ export function RatingClient({ upload }: RatingClientProps) {
       if (signUpError) throw signUpError
 
       toast({
-        title: 'Account created!',
-        description: 'Check your email to confirm your account, then sign in to access your dashboard.',
+        title: 'Compte créé !',
+        description: 'Vérifiez votre e‑mail pour confirmer votre compte, puis connectez-vous pour accéder à votre tableau de bord.',
       })
 
       // Redirect to login after a delay
@@ -74,7 +74,7 @@ export function RatingClient({ upload }: RatingClientProps) {
 
     } catch (error: any) {
       toast({
-        title: 'Error creating account',
+        title: 'Erreur lors de la création du compte',
         description: error.message,
         variant: 'destructive',
       })
@@ -88,9 +88,9 @@ export function RatingClient({ upload }: RatingClientProps) {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle>Analysis in Progress</CardTitle>
+            <CardTitle>Analyse en cours</CardTitle>
             <CardDescription>
-              Your CV is being analyzed. Please wait a moment...
+              Votre CV est en cours d’analyse. Veuillez patienter un instant…
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center">
@@ -112,7 +112,7 @@ export function RatingClient({ upload }: RatingClientProps) {
               <span className="text-xl font-bold text-gray-900">CV Review</span>
             </div>
             <Button variant="ghost" onClick={() => router.push('/landing')}>
-              ← Back to Home
+              ← Retour à l’accueil
             </Button>
           </div>
         </div>
@@ -124,7 +124,7 @@ export function RatingClient({ upload }: RatingClientProps) {
           <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-white shadow-lg border-4 border-gray-100 mb-6">
             <div className="text-center">
               <div className="text-4xl font-bold text-gray-900">{feedback.overall_score}</div>
-              <div className="text-sm text-gray-500">out of 10</div>
+              <div className="text-sm text-gray-500">sur 10</div>
             </div>
           </div>
           
@@ -134,14 +134,14 @@ export function RatingClient({ upload }: RatingClientProps) {
           
           <Badge className={`text-lg px-4 py-2 ${getScoreColor(feedback.overall_score)}`}>
             <Star className="h-4 w-4 mr-2" />
-            CV Score: {feedback.overall_score}/10
+            Score du CV : {feedback.overall_score}/10
           </Badge>
         </div>
 
         {/* Summary */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Overall Assessment</CardTitle>
+            <CardTitle>Évaluation globale</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-gray-700 text-lg leading-relaxed">{feedback.summary}</p>
@@ -154,7 +154,7 @@ export function RatingClient({ upload }: RatingClientProps) {
             <CardHeader>
               <CardTitle className="flex items-center text-green-700">
                 <CheckCircle className="h-5 w-5 mr-2" />
-                Key Strengths
+                Forces clés
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -167,7 +167,7 @@ export function RatingClient({ upload }: RatingClientProps) {
                 ))}
                 {feedback.strengths.length > 3 && (
                   <li className="text-gray-500 text-sm">
-                    +{feedback.strengths.length - 3} more insights available
+                    +{feedback.strengths.length - 3} autres informations disponibles
                   </li>
                 )}
               </ul>
@@ -178,7 +178,7 @@ export function RatingClient({ upload }: RatingClientProps) {
             <CardHeader>
               <CardTitle className="flex items-center text-orange-700">
                 <AlertCircle className="h-5 w-5 mr-2" />
-                Areas to Improve
+                Points à améliorer
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -191,7 +191,7 @@ export function RatingClient({ upload }: RatingClientProps) {
                 ))}
                 {feedback.areas_for_improvement.length > 3 && (
                   <li className="text-gray-500 text-sm">
-                    +{feedback.areas_for_improvement.length - 3} more suggestions available
+                    +{feedback.areas_for_improvement.length - 3} autres suggestions disponibles
                   </li>
                 )}
               </ul>
@@ -202,9 +202,9 @@ export function RatingClient({ upload }: RatingClientProps) {
         {/* Email Capture CTA */}
         <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Want the Complete Analysis?</CardTitle>
+            <CardTitle className="text-2xl">Vous voulez l’analyse complète&nbsp;?</CardTitle>
             <CardDescription className="text-blue-100">
-              Get detailed feedback, specific suggestions, keyword analysis, and save your results
+              Obtenez un retour détaillé, des suggestions spécifiques, une analyse des mots-clés et enregistrez vos résultats
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -213,18 +213,18 @@ export function RatingClient({ upload }: RatingClientProps) {
                 <div className="grid md:grid-cols-3 gap-4 mb-6">
                   <div className="text-center">
                     <Lightbulb className="h-8 w-8 mx-auto mb-2 text-yellow-300" />
-                    <h4 className="font-semibold">Detailed Suggestions</h4>
-                    <p className="text-sm text-blue-100">Section-by-section improvements</p>
+                    <h4 className="font-semibold">Suggestions détaillées</h4>
+                    <p className="text-sm text-blue-100">Améliorations section par section</p>
                   </div>
                   <div className="text-center">
                     <FileText className="h-8 w-8 mx-auto mb-2 text-green-300" />
-                    <h4 className="font-semibold">Keyword Analysis</h4>
-                    <p className="text-sm text-blue-100">ATS optimization tips</p>
+                    <h4 className="font-semibold">Analyse des mots-clés</h4>
+                    <p className="text-sm text-blue-100">Conseils d’optimisation ATS</p>
                   </div>
                   <div className="text-center">
                     <Star className="h-8 w-8 mx-auto mb-2 text-purple-300" />
-                    <h4 className="font-semibold">Track Progress</h4>
-                    <p className="text-sm text-blue-100">Save and compare versions</p>
+                    <h4 className="font-semibold">Suivi des progrès</h4>
+                    <p className="text-sm text-blue-100">Enregistrez et comparez les versions</p>
                   </div>
                 </div>
                 <Button 
@@ -232,20 +232,20 @@ export function RatingClient({ upload }: RatingClientProps) {
                   className="bg-white text-blue-600 hover:bg-gray-100"
                   onClick={() => setShowEmailCapture(true)}
                 >
-                  Unlock Full Analysis
+                  Débloquer l’analyse complète
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
             ) : (
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="email" className="text-white">Email Address</Label>
+                  <Label htmlFor="email" className="text-white">Adresse e‑mail</Label>
                   <Input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
+                    placeholder="votre@email.com"
                     className="bg-white text-gray-900"
                   />
                 </div>
@@ -258,12 +258,12 @@ export function RatingClient({ upload }: RatingClientProps) {
                     {isCreatingAccount ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent mr-2" />
-                        Creating Account...
+                        Création du compte…
                       </>
                     ) : (
                       <>
                         <Mail className="h-4 w-4 mr-2" />
-                        Create Free Account
+                        Créer un compte gratuit
                       </>
                     )}
                   </Button>
@@ -272,11 +272,11 @@ export function RatingClient({ upload }: RatingClientProps) {
                     className="border-white text-white hover:bg-white hover:text-blue-600"
                     onClick={() => setShowEmailCapture(false)}
                   >
-                    Cancel
+                    Annuler
                   </Button>
                 </div>
                 <p className="text-xs text-blue-100 text-center">
-                  We'll send you a confirmation email. No spam, unsubscribe anytime.
+                  Nous vous enverrons un e‑mail de confirmation. Pas de spam, désinscription à tout moment.
                 </p>
               </div>
             )}
@@ -285,18 +285,18 @@ export function RatingClient({ upload }: RatingClientProps) {
 
         {/* Try Again CTA */}
         <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">Have another CV to analyze?</p>
+          <p className="text-gray-600 mb-4">Vous avez un autre CV à analyser&nbsp;?</p>
           <Button 
             variant="outline" 
             onClick={() => router.push('/landing')}
             className="mr-4"
           >
-            Analyze Another CV
+            Analyser un autre CV
           </Button>
           <Button 
             onClick={() => router.push('/login')}
           >
-            Sign In to Dashboard
+            Se connecter au tableau de bord
           </Button>
         </div>
       </div>

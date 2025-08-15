@@ -35,13 +35,13 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
 
   const columns = [
     columnHelper.accessor('file_name', {
-      header: 'File Name',
+      header: 'Nom du fichier',
       cell: ({ getValue }) => (
         <div className="font-medium">{getValue()}</div>
       ),
     }),
     columnHelper.accessor('status', {
-      header: 'Status',
+      header: 'Statut',
       cell: ({ getValue }) => {
         const status = getValue()
         return (
@@ -55,7 +55,7 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
       },
     }),
     columnHelper.accessor('created_at', {
-      header: 'Uploaded',
+      header: 'Téléversé le',
       cell: ({ getValue }) => formatDate(getValue()),
     }),
     columnHelper.display({
@@ -74,7 +74,7 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
                 onClick={() => setSelectedUpload(upload)}
               >
                 <Eye className="h-4 w-4 mr-1" />
-                View Feedback
+                Voir le retour
               </Button>
             )}
             <Button
@@ -83,7 +83,7 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
               onClick={() => downloadCV(upload)}
             >
               <Download className="h-4 w-4 mr-1" />
-              Download
+              Télécharger
             </Button>
           </div>
         )
@@ -121,9 +121,9 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>File Name</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Uploaded</TableHead>
+              <TableHead>Nom du fichier</TableHead>
+              <TableHead>Statut</TableHead>
+              <TableHead>Téléversé le</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -184,7 +184,7 @@ export function CVUploadsTable({ data, isLoading }: CVUploadsTableProps) {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No CV uploads found. Upload your first CV to get started!
+                  Aucun CV téléversé. Téléversez votre premier CV pour commencer !
                 </TableCell>
               </TableRow>
             )}

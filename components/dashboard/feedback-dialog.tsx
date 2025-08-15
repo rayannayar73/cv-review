@@ -43,7 +43,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-2">
-            <span>CV Feedback: {upload.file_name}</span>
+            <span>Retour sur le CV : {upload.file_name}</span>
             <Badge className={getScoreColor(feedback.overall_score)}>
               <Star className="h-3 w-3 mr-1" />
               {feedback.overall_score}/10
@@ -55,7 +55,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
           {/* Overall Summary */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Overall Assessment</CardTitle>
+              <CardTitle className="text-lg">Évaluation globale</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700">{feedback.summary}</p>
@@ -67,7 +67,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                Strengths
+                Forces
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -87,7 +87,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <AlertCircle className="h-5 w-5 text-yellow-600 mr-2" />
-                Areas for Improvement
+                Points à améliorer
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -107,7 +107,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <Lightbulb className="h-5 w-5 text-blue-600 mr-2" />
-                Specific Suggestions
+                Suggestions spécifiques
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -117,7 +117,13 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-gray-900">{suggestion.section}</h4>
                       <Badge className={getImpactColor(suggestion.impact)}>
-                        {suggestion.impact} impact
+                        {suggestion.impact === 'high'
+                          ? 'élevé impact'
+                          : suggestion.impact === 'medium'
+                          ? 'moyen impact'
+                          : suggestion.impact === 'low'
+                          ? 'faible impact'
+                          : suggestion.impact + ' impact'}
                       </Badge>
                     </div>
                     <p className="text-gray-700">{suggestion.suggestion}</p>
@@ -130,7 +136,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
           {/* Formatting Feedback */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Formatting & Presentation</CardTitle>
+              <CardTitle className="text-lg">Mise en forme & Présentation</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700">{feedback.formatting_feedback}</p>
@@ -140,12 +146,12 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
           {/* Keyword Analysis */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Keyword Analysis</CardTitle>
+              <CardTitle className="text-lg">Analyse des mots-clés</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {feedback.keyword_analysis.missing_keywords.length > 0 && (
                 <div>
-                  <h4 className="font-medium text-red-700 mb-2">Missing Keywords</h4>
+                  <h4 className="font-medium text-red-700 mb-2">Mots-clés manquants</h4>
                   <div className="flex flex-wrap gap-2">
                     {feedback.keyword_analysis.missing_keywords.map((keyword, index) => (
                       <Badge key={index} variant="outline" className="text-red-600 border-red-200">
@@ -158,7 +164,7 @@ export function FeedbackDialog({ upload, open, onOpenChange }: FeedbackDialogPro
 
               {feedback.keyword_analysis.suggested_additions.length > 0 && (
                 <div>
-                  <h4 className="font-medium text-green-700 mb-2">Suggested Additions</h4>
+                  <h4 className="font-medium text-green-700 mb-2">Ajouts suggérés</h4>
                   <div className="flex flex-wrap gap-2">
                     {feedback.keyword_analysis.suggested_additions.map((addition, index) => (
                       <Badge key={index} variant="outline" className="text-green-600 border-green-200">

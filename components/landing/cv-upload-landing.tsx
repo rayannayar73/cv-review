@@ -41,8 +41,8 @@ export function CVUploadLanding() {
     // Validate file type
     if (file.type !== 'application/pdf') {
       toast({
-        title: 'Invalid file type',
-        description: 'Please upload a PDF file.',
+        title: 'Type de fichier invalide',
+        description: 'Veuillez télécharger un fichier PDF.',
         variant: 'destructive',
       })
       return
@@ -51,8 +51,8 @@ export function CVUploadLanding() {
     // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
       toast({
-        title: 'File too large',
-        description: 'Please upload a file smaller than 10MB.',
+        title: 'Fichier trop volumineux',
+        description: 'Veuillez télécharger un fichier de moins de 10 Mo.',
         variant: 'destructive',
       })
       return
@@ -82,7 +82,7 @@ export function CVUploadLanding() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to upload CV')
+        throw new Error('Échec du téléversement du CV')
       }
 
       const { uploadId } = await response.json()
@@ -92,7 +92,7 @@ export function CVUploadLanding() {
 
     } catch (error: any) {
       toast({
-        title: 'Upload failed',
+        title: 'Échec du téléversement',
         description: error.message,
         variant: 'destructive',
       })
@@ -111,9 +111,9 @@ export function CVUploadLanding() {
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Try CV Review Free</CardTitle>
+        <CardTitle className="text-2xl">Essayez CV Review gratuitement</CardTitle>
         <CardDescription>
-          Upload your CV and get instant AI feedback - no account required
+          Téléchargez votre CV et obtenez un retour instantané de l’IA – aucun compte requis
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -131,20 +131,20 @@ export function CVUploadLanding() {
           >
             <Upload className="mx-auto h-16 w-16 text-gray-400 mb-6" />
             <p className="text-xl font-medium text-gray-900 mb-2">
-              Drop your CV here, or{' '}
+              Déposez votre CV ici, ou{' '}
               <button
                 type="button"
                 className="text-blue-600 hover:underline"
                 onClick={() => fileInputRef.current?.click()}
               >
-                browse
+                parcourez
               </button>
             </p>
-            <p className="text-gray-500 mb-4">PDF files only, up to 10MB</p>
+            <p className="text-gray-500 mb-4">Fichiers PDF uniquement, jusqu’à 10 Mo</p>
             <div className="flex justify-center space-x-4 text-sm text-gray-500">
-              <span>✓ Instant Analysis</span>
-              <span>✓ Professional Feedback</span>
-              <span>✓ Completely Free</span>
+              <span>✓ Analyse instantanée</span>
+              <span>✓ Retour professionnel</span>
+              <span>✓ Entièrement gratuit</span>
             </div>
             <input
               ref={fileInputRef}
@@ -184,16 +184,16 @@ export function CVUploadLanding() {
                 {isUploading ? (
                   <>
                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
-                    Analyzing Your CV...
+                    Analyse de votre CV…
                   </>
                 ) : (
-                  'Get My CV Analysis'
+                  'Obtenir l’analyse de mon CV'
                 )}
               </Button>
               
               <div className="text-center">
                 <p className="text-xs text-gray-500">
-                  By uploading, you agree to our analysis. Your CV will be processed securely.
+                  En téléversant, vous acceptez notre analyse. Votre CV sera traité en toute sécurité.
                 </p>
               </div>
             </div>

@@ -35,7 +35,7 @@ export default function DashboardClient() {
       router.push('/login')
     } catch (error: any) {
       toast({
-        title: 'Error',
+        title: 'Erreur',
         description: error.message,
         variant: 'destructive',
       })
@@ -50,7 +50,7 @@ export default function DashboardClient() {
           <div className="flex justify-between items-center h-16">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">CV Review</h1>
-              <p className="text-sm text-gray-500">AI-powered resume feedback</p>
+              <p className="text-sm text-gray-500">Retour sur CV propulsé par l’IA</p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -59,7 +59,7 @@ export default function DashboardClient() {
               </div>
               <Button variant="outline" onClick={handleSignOut}>
                 <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
+                Se déconnecter
               </Button>
             </div>
           </div>
@@ -78,9 +78,9 @@ export default function DashboardClient() {
           {/* Uploads Table */}
           <Card>
             <CardHeader>
-              <CardTitle>Your CV Uploads</CardTitle>
+              <CardTitle>Vos CV téléversés</CardTitle>
               <CardDescription>
-                View and manage your uploaded CVs and their feedback
+                Affichez et gérez vos CV téléversés et leurs retours
               </CardDescription>
             </CardHeader>
             <CardContent>

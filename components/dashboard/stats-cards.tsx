@@ -29,30 +29,30 @@ export function StatsCards() {
 
   const cards = [
     {
-      title: 'Total CVs',
+      title: 'Total de CV',
       value: stats.total,
       icon: FileText,
-      description: 'Total uploads',
+      description: 'Téléversements totaux',
     },
     {
-      title: 'Completed',
+      title: 'Terminés',
       value: stats.completed,
       icon: CheckCircle,
-      description: 'Reviews completed',
+      description: 'Analyses terminées',
       color: 'text-green-600',
     },
     {
-      title: 'Processing',
+      title: 'En cours',
       value: stats.processing,
       icon: Clock,
-      description: 'Currently processing',
+      description: 'Traitement en cours',
       color: 'text-blue-600',
     },
     {
-      title: 'Failed',
+      title: 'Échoués',
       value: stats.failed,
       icon: AlertCircle,
-      description: 'Processing failed',
+      description: 'Échec du traitement',
       color: 'text-red-600',
     },
   ]

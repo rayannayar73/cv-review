@@ -23,10 +23,10 @@ export function LandingClient() {
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" onClick={() => router.push('/login')}>
-                Sign In
+                Se connecter
               </Button>
               <Button onClick={() => router.push('/login')}>
-                Get Started
+                Commencer
               </Button>
             </div>
           </div>
@@ -37,15 +37,14 @@ export function LandingClient() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <Badge className="mb-4 bg-blue-100 text-blue-800 border-blue-200">
-            ✨ Powered by AI • Completely Free
+            ✨ Propulsé par l'IA • Entièrement gratuit
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Get Professional CV <br />
-            <span className="text-blue-600">Feedback in Minutes</span>
+            Obtenez un retour professionnel <br />
+            <span className="text-blue-600">sur votre CV en quelques minutes</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Upload your CV and get detailed, actionable feedback from AI. 
-            Improve your resume with expert suggestions on content, formatting, and keywords.
+            Téléchargez votre CV et recevez un retour détaillé et exploitable grâce à l'IA. Améliorez votre CV avec des suggestions d'experts sur le contenu, la mise en forme et les mots-clés.
           </p>
           
           {/* Upload Section */}
@@ -59,22 +58,22 @@ export function LandingClient() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Star className="h-6 w-6 text-blue-600" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">CV Rating</h3>
-              <p className="text-gray-600 text-sm">Get an overall score from 1-10 based on industry standards</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Évaluation du CV</h3>
+              <p className="text-gray-600 text-sm">Obtenez une note globale de 1 à 10 basée sur les standards du secteur</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-6 w-6 text-purple-600" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Detailed Feedback</h3>
-              <p className="text-gray-600 text-sm">Specific suggestions for each section of your CV</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Retour détaillé</h3>
+              <p className="text-gray-600 text-sm">Suggestions spécifiques pour chaque section de votre CV</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Users className="h-6 w-6 text-green-600" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Client Dashboard</h3>
-              <p className="text-gray-600 text-sm">Track all your CV submissions and improvements</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Tableau de bord client</h3>
+              <p className="text-gray-600 text-sm">Suivez toutes vos soumissions et améliorations de CV</p>
             </div>
           </div>
         </div>
@@ -85,10 +84,10 @@ export function LandingClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose CV Review?
+              Pourquoi choisir CV Review ?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Professional CV analysis that helps you stand out from the competition
+              Analyse professionnelle du CV qui vous aide à vous démarquer de la concurrence
             </p>
           </div>
 
@@ -96,9 +95,9 @@ export function LandingClient() {
             <Card>
               <CardHeader>
                 <Zap className="h-8 w-8 text-yellow-500 mb-2" />
-                <CardTitle>Instant Analysis</CardTitle>
+                <CardTitle>Analyse instantanée</CardTitle>
                 <CardDescription>
-                  Get feedback in under 2 minutes using advanced AI technology
+                  Obtenez un retour en moins de 2 minutes grâce à une technologie IA avancée
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -106,9 +105,9 @@ export function LandingClient() {
             <Card>
               <CardHeader>
                 <Star className="h-8 w-8 text-blue-500 mb-2" />
-                <CardTitle>Professional Standards</CardTitle>
+                <CardTitle>Normes professionnelles</CardTitle>
                 <CardDescription>
-                  Evaluated against industry best practices and ATS compatibility
+                  Évalué selon les meilleures pratiques du secteur et la compatibilité ATS
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -116,9 +115,9 @@ export function LandingClient() {
             <Card>
               <CardHeader>
                 <CheckCircle className="h-8 w-8 text-green-500 mb-2" />
-                <CardTitle>Actionable Insights</CardTitle>
+                <CardTitle>Informations exploitables</CardTitle>
                 <CardDescription>
-                  Specific suggestions with priority levels for maximum impact
+                  Suggestions spécifiques avec niveaux de priorité pour un impact maximal
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -126,9 +125,9 @@ export function LandingClient() {
             <Card>
               <CardHeader>
                 <Upload className="h-8 w-8 text-purple-500 mb-2" />
-                <CardTitle>Easy Upload</CardTitle>
+                <CardTitle>Téléchargement facile</CardTitle>
                 <CardDescription>
-                  Simply drag & drop your PDF CV - no signup required to try
+                  Glissez-déposez simplement votre CV PDF - aucun compte requis pour essayer
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -136,9 +135,9 @@ export function LandingClient() {
             <Card>
               <CardHeader>
                 <FileText className="h-8 w-8 text-indigo-500 mb-2" />
-                <CardTitle>Keyword Analysis</CardTitle>
+                <CardTitle>Analyse des mots-clés</CardTitle>
                 <CardDescription>
-                  Optimize for applicant tracking systems with keyword suggestions
+                  Optimisez pour les systèmes de suivi des candidatures avec des suggestions de mots-clés
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -146,9 +145,9 @@ export function LandingClient() {
             <Card>
               <CardHeader>
                 <Users className="h-8 w-8 text-pink-500 mb-2" />
-                <CardTitle>Track Progress</CardTitle>
+                <CardTitle>Suivi des progrès</CardTitle>
                 <CardDescription>
-                  Monitor improvements across multiple CV versions over time
+                  Suivez les améliorations sur plusieurs versions de CV au fil du temps
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -161,10 +160,10 @@ export function LandingClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How It Works
+              Comment ça marche
             </h2>
             <p className="text-xl text-gray-600">
-              Get professional CV feedback in 3 simple steps
+              Obtenez un retour professionnel sur votre CV en 3 étapes simples
             </p>
           </div>
 
@@ -173,9 +172,9 @@ export function LandingClient() {
               <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                 1
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Your CV</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Téléchargez votre CV</h3>
               <p className="text-gray-600">
-                Drag and drop your PDF CV or click to browse. No account needed to try.
+                Glissez-déposez votre CV PDF ou cliquez pour parcourir. Aucun compte nécessaire pour essayer.
               </p>
             </div>
 
@@ -183,9 +182,9 @@ export function LandingClient() {
               <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                 2
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">AI Analysis</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Analyse IA</h3>
               <p className="text-gray-600">
-                Our AI analyzes your CV for content, structure, keywords, and formatting.
+                Notre IA analyse votre CV pour le contenu, la structure, les mots-clés et la mise en forme.
               </p>
             </div>
 
@@ -193,9 +192,9 @@ export function LandingClient() {
               <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                 3
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Get Feedback</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Recevez un retour</h3>
               <p className="text-gray-600">
-                Receive detailed feedback with actionable suggestions to improve your CV.
+                Recevez un retour détaillé avec des suggestions exploitables pour améliorer votre CV.
               </p>
             </div>
           </div>
@@ -206,13 +205,13 @@ export function LandingClient() {
       <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Improve Your CV?
+            Prêt à améliorer votre CV ?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join thousands of professionals who have improved their CVs with our AI-powered feedback
+            Rejoignez des milliers de professionnels qui ont amélioré leur CV grâce à notre retour alimenté par l'IA
           </p>
           <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-            Try It Free Now
+            Essayez-le gratuitement maintenant
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
@@ -227,7 +226,7 @@ export function LandingClient() {
               <span className="text-lg font-semibold">CV Review</span>
             </div>
             <p className="text-gray-400 text-sm">
-              © 2025 CV Review. All rights reserved. Powered by AI.
+              © 2025 CV Review. Tous droits réservés. Propulsé par l'IA.
             </p>
           </div>
         </div>
